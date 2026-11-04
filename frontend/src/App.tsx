@@ -2,10 +2,11 @@ import { useState } from "react";
 
 import BrdAnalyzer from "./pages/BrdAnalyzer";
 import IncidentAnalyzer from "./pages/IncidentAnalyzer";
+import UserStoryGenerator from "./pages/UserStoryGenerator";
 
 function App() {
   const [selectedModule, setSelectedModule] = useState<
-    "incident" | "brd"
+    "incident" | "brd" | "user-story"
   >("incident");
 
   return (
@@ -27,13 +28,21 @@ function App() {
         >
           BRD to Backlog
         </button>
+        <button
+          type="button"
+          className={selectedModule === "user-story" ? "active" : ""}
+          aria-current={
+            selectedModule === "user-story" ? "page" : undefined
+          }
+          onClick={() => setSelectedModule("user-story")}
+        >
+          User Story Generator
+        </button>
       </nav>
 
-      {selectedModule === "incident" ? (
-        <IncidentAnalyzer />
-      ) : (
-        <BrdAnalyzer />
-      )}
+      {selectedModule === "incident" && <IncidentAnalyzer />}
+      {selectedModule === "brd" && <BrdAnalyzer />}
+      {selectedModule === "user-story" && <UserStoryGenerator />}
     </div>
   );
 }
