@@ -1,14 +1,47 @@
+import logging
+
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 from app.api.incident import router as incident_router
 
+
+logging.basicConfig(
+    level=logging.INFO,
+    format=(
+        "%(asctime)s | %(levelname)s | "
+        "%(name)s | %(message)s"
+    ),
+)
 app = FastAPI(
-    title="Requirement Analysis Copilot"
+    title="Requirement Analysis Copilot",
+    version="1.0.0",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(incident_router)
 
-@app.get("/")
-def root():
+
+@app.get("/health")
+def health_check() -> dict[str, str]:
     return {
-        "message": "Requirement Analysis Copilot Running"
+        "status": "healthy",
+        "application": "Requirement Analysis Copilot",
+    }
+
+
+@app.get("/")
+def root() -> dict[str, str]:
+    return {
+        "message": "Requirement Analysis Copilot Running",
     }

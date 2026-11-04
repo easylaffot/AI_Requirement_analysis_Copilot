@@ -1,40 +1,37 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException, status
 
-from app.schemas.incident import IncidentRequest
 from app.schemas.analysis import IncidentAnalysisResponse
+from app.schemas.incident import IncidentRequest
+from app.services.incident_service import (
+    IncidentAnalysisError,
+    IncidentService,
+)
+
 
 router = APIRouter(
     prefix="/api/incidents",
-    tags=["Incident Analyzer"]
+    tags=["Incident Analyzer"],
 )
+
 
 @router.post(
     "/analyze",
-    response_model=IncidentAnalysisResponse
+    response_model=IncidentAnalysisResponse,
+    status_code=status.HTTP_200_OK,
 )
 async def analyze_incident(
-    request: IncidentRequest
-):
-    return IncidentAnalysisResponse(
-        incident_summary=f"Incident detected in {request.application}",
-        business_impact=request.impact,
-        root_cause_hypothesis="Possible timeout issue",
-        functional_requirements=[
-            "System shall process transactions successfully",
-            "System shall handle timeout conditions gracefully"
-        ],
-        user_story=(
-            "As a banking customer, "
-            "I want transactions processed successfully "
-            "so that I can complete my transfer."
-        ),
-        acceptance_criteria=[
-            "Given a valid transaction, when submitted, then it should succeed",
-            "Given a timeout condition, appropriate error message should be shown"
-        ],
-        risks=[
-            "Customer dissatisfaction",
-            "Revenue impact"
-        ],
-        priority=request.severity
-    )
+    request: IncidentRequest,
+) -> IncidentAnalysisResponse:
+    service = IncidentService()
+
+    try:
+        return await service.analyze(request)
+
+    except IncidentAnalysisError as exc:
+        raise HTTPException(
+            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
+            detail=str(exc),
+        ) from exc
+
+    finally:
+        await service.close()

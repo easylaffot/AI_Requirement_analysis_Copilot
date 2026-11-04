@@ -192,21 +192,46 @@ function App() {
           <h3>Incident Summary</h3>
           <p>{result.incident_summary}</p>
 
+          <h3>Confirmed Evidence</h3>
+          <ul>
+            {result.confirmed_evidence.map((evidence, index) => (
+              <li key={`${index}-${evidence}`}>{evidence}</li>
+            ))}
+          </ul>
+
           <h3>Business Impact</h3>
           <p>{result.business_impact}</p>
 
           <h3>Root-Cause Hypothesis</h3>
           <p>{result.root_cause_hypothesis}</p>
 
+          <h3>Assumptions Requiring Validation</h3>
+          {result.assumptions.length > 0 ? (
+            <ul>
+              {result.assumptions.map((assumption, index) => (
+                <li key={`${index}-${assumption}`}>{assumption}</li>
+              ))}
+            </ul>
+          ) : (
+            <p>No additional assumptions were identified.</p>
+          )}
+
+          <h3>Missing Information</h3>
+          {result.missing_information.length > 0 ? (
+            <ul>
+              {result.missing_information.map((item, index) => (
+                <li key={`${index}-${item}`}>{item}</li>
+              ))}
+            </ul>
+          ) : (
+            <p>No missing information was identified.</p>
+          )}
+
           <h3>Functional Requirements</h3>
           <ul>
-            {result.functional_requirements.map(
-              (requirement, index) => (
-                <li key={`${index}-${requirement}`}>
-                  {requirement}
-                </li>
-              )
-            )}
+            {result.functional_requirements.map((requirement, index) => (
+              <li key={`${index}-${requirement}`}>{requirement}</li>
+            ))}
           </ul>
 
           <h3>User Story</h3>
@@ -214,13 +239,9 @@ function App() {
 
           <h3>Acceptance Criteria</h3>
           <ul>
-            {result.acceptance_criteria.map(
-              (criterion, index) => (
-                <li key={`${index}-${criterion}`}>
-                  {criterion}
-                </li>
-              )
-            )}
+            {result.acceptance_criteria.map((criterion, index) => (
+              <li key={`${index}-${criterion}`}>{criterion}</li>
+            ))}
           </ul>
 
           <h3>Risks</h3>
@@ -232,6 +253,16 @@ function App() {
 
           <h3>Recommended Priority</h3>
           <p>{result.priority}</p>
+
+          <h3>Priority Justification</h3>
+          <p>{result.priority_justification}</p>
+
+          <h3>Human Validation Required</h3>
+          <ul>
+            {result.human_validation_required.map((item, index) => (
+              <li key={`${index}-${item}`}>{item}</li>
+            ))}
+          </ul>
         </section>
       )}
     </main>
