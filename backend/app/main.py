@@ -6,6 +6,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.brd import router as brd_router
 from app.api.incident import router as incident_router
 from app.api.user_story import router as user_story_router
+from app.api.acceptance_criteria import (
+    router as acceptance_criteria_router,
+)
 
 
 
@@ -35,6 +38,7 @@ app.add_middleware(
 app.include_router(incident_router)
 app.include_router(brd_router)
 app.include_router(user_story_router)
+app.include_router(acceptance_criteria_router)
 
 @app.get("/health")
 def health_check() -> dict[str, str]:

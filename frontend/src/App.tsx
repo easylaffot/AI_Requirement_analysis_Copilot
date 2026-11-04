@@ -3,10 +3,11 @@ import { useState } from "react";
 import BrdAnalyzer from "./pages/BrdAnalyzer";
 import IncidentAnalyzer from "./pages/IncidentAnalyzer";
 import UserStoryGenerator from "./pages/UserStoryGenerator";
+import AcceptanceCriteriaGenerator from "./pages/AcceptanceCriteriaGenerator";
 
 function App() {
   const [selectedModule, setSelectedModule] = useState<
-    "incident" | "brd" | "user-story"
+    "incident" | "brd" | "user-story" | "acceptance-criteria"
   >("incident");
 
   return (
@@ -38,11 +39,26 @@ function App() {
         >
           User Story Generator
         </button>
+        <button
+          type="button"
+          className={
+            selectedModule === "acceptance-criteria" ? "active" : ""
+          }
+          aria-current={
+            selectedModule === "acceptance-criteria" ? "page" : undefined
+          }
+          onClick={() => setSelectedModule("acceptance-criteria")}
+        >
+          Acceptance Criteria
+        </button>
       </nav>
 
       {selectedModule === "incident" && <IncidentAnalyzer />}
       {selectedModule === "brd" && <BrdAnalyzer />}
       {selectedModule === "user-story" && <UserStoryGenerator />}
+      {selectedModule === "acceptance-criteria" && (
+        <AcceptanceCriteriaGenerator />
+      )}
     </div>
   );
 }
