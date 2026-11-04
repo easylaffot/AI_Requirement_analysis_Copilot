@@ -3,36 +3,91 @@ body {
   font-family: Arial, sans-serif;
   background: #f5f7fa;
   color: #1f2937;
+  line-height: 1.5;
 }
 
 main {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 0 auto;
-  padding: 32px 20px;
+  padding: 32px 24px 56px;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.module-navigation {
+  display: flex;
+  gap: 8px;
+  padding: 12px max(24px, calc((100% - 1100px) / 2));
+  background: #172554;
+}
+
+.module-navigation button {
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: #e0e7ff;
+}
+
+.module-navigation button:hover,
+.module-navigation button.active {
+  background: #fff;
+  color: #172554;
 }
 
 form,
-section {
+.result-section,
+.error-message {
   background: white;
   padding: 24px;
-  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
   margin-top: 20px;
 }
 
-input,
-select,
-textarea {
+.brd-form {
+  display: grid;
+  gap: 18px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label {
+  font-weight: 600;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
   width: 100%;
-  max-width: 650px;
   box-sizing: border-box;
-  padding: 10px;
-  margin-top: 6px;
+  padding: 11px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
   font: inherit;
 }
 
+.form-field textarea {
+  resize: vertical;
+}
+
+.field-hint,
+.empty-message {
+  color: #64748b;
+}
+
 button {
-  padding: 10px 18px;
+  padding: 10px 16px;
   cursor: pointer;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 600;
 }
 
 button:disabled {
@@ -42,4 +97,209 @@ button:disabled {
 
 li {
   margin-bottom: 8px;
+}
+
+.loading-state {
+  margin: 0;
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+.error-message {
+  border-color: #fecaca;
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.error-message h2 {
+  margin-top: 0;
+}
+
+.error-message p {
+  margin-bottom: 0;
+}
+
+.result-container {
+  margin-top: 24px;
+}
+
+.result-section > h2 {
+  margin-top: 0;
+  color: #172554;
+}
+
+.requirement-list,
+.epic-list,
+.traceability-list {
+  display: grid;
+  gap: 16px;
+}
+
+.requirement-card,
+.epic-card,
+.feature-card,
+.story-card,
+.traceability-entry {
+  padding: 18px;
+  border: 1px solid #dbe3ee;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.requirement-card h3,
+.epic-card h3,
+.feature-card h4,
+.story-card h5,
+.traceability-entry h3 {
+  margin-top: 0;
+}
+
+.requirement-card dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 0;
+}
+
+.requirement-card dl > div {
+  overflow-wrap: anywhere;
+}
+
+.requirement-card dt {
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.requirement-card dd {
+  margin: 2px 0 0;
+}
+
+.epic-card {
+  border-left: 5px solid #4338ca;
+  background: #f8faff;
+}
+
+.features {
+  display: grid;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.features > h4,
+.user-stories > h5 {
+  margin: 0;
+}
+
+.feature-card {
+  border-left: 4px solid #0891b2;
+}
+
+.user-stories {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.story-card {
+  border-left: 4px solid #16a34a;
+}
+
+.story-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.story-heading h5 {
+  margin-bottom: 10px;
+}
+
+.priority-badge {
+  flex: 0 0 auto;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.priority-critical {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.priority-high {
+  background: #ffedd5;
+  color: #9a3412;
+}
+
+.priority-medium {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+.priority-low {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.story-metadata {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+}
+
+.story-metadata h6,
+.acceptance-criteria h6 {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+}
+
+.compact-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.backlog-source-ids {
+  margin-top: 12px;
+}
+
+.acceptance-criteria {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 6px;
+  background: #f0fdf4;
+}
+
+.acceptance-criteria ol {
+  margin-bottom: 0;
+  padding-left: 22px;
+}
+
+.traceability-entry {
+  border-left: 4px solid #7c3aed;
+}
+
+.traceability-entry h3 {
+  font-size: 1.1rem;
+}
+
+@media (max-width: 600px) {
+  main {
+    padding: 24px 16px 40px;
+  }
+
+  .module-navigation {
+    padding: 10px 16px;
+  }
+
+  form,
+  .result-section {
+    padding: 18px;
+  }
+
+  .story-heading {
+    flex-direction: column;
+  }
 }

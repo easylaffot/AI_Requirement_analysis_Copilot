@@ -1,271 +1,40 @@
 import { useState } from "react";
 
-import { analyzeIncident } from "./api/incidentApi";
-import type {
-  IncidentAnalysis,
-  IncidentFormData,
-} from "./types/incident";
-
-const initialFormData: IncidentFormData = {
-  incident_id: "",
-  application: "",
-  severity: "High",
-  description: "",
-  impact: "",
-  logs: "",
-};
+import BrdAnalyzer from "./pages/BrdAnalyzer";
+import IncidentAnalyzer from "./pages/IncidentAnalyzer";
 
 function App() {
-  const [formData, setFormData] =
-    useState<IncidentFormData>(initialFormData);
-
-  const [result, setResult] =
-    useState<IncidentAnalysis | null>(null);
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  function handleChange(
-    event: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) {
-    const { name, value } = event.target;
-
-    setFormData((currentData) => ({
-      ...currentData,
-      [name]: value,
-    }));
-  }
-
-  async function handleSubmit(
-    event: React.FormEvent<HTMLFormElement>
-  ) {
-    event.preventDefault();
-
-    setError("");
-    setResult(null);
-    setIsLoading(true);
-
-    try {
-      const analysis = await analyzeIncident(formData);
-      setResult(analysis);
-    } catch (requestError) {
-      console.error("Incident analysis failed:", requestError);
-
-      setError(
-        "Unable to analyze the incident. Check whether the FastAPI backend is running on port 8000."
-      );
-    } finally {
-      setIsLoading(false);
-    }
-  }
+  const [selectedModule, setSelectedModule] = useState<
+    "incident" | "brd"
+  >("incident");
 
   return (
-    <main>
-      <h1>Requirement Analysis Copilot</h1>
-      <h2>Production Incident Requirement Analyzer</h2>
-
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="incident_id">Incident ID</label>
-          <br />
-
-          <input
-            id="incident_id"
-            name="incident_id"
-            value={formData.incident_id}
-            onChange={handleChange}
-            placeholder="INC-1001"
-            required
-          />
-        </div>
-
-        <br />
-
-        <div>
-          <label htmlFor="application">Application</label>
-          <br />
-
-          <input
-            id="application"
-            name="application"
-            value={formData.application}
-            onChange={handleChange}
-            placeholder="Mobile Banking"
-            required
-          />
-        </div>
-
-        <br />
-
-        <div>
-          <label htmlFor="severity">Severity</label>
-          <br />
-
-          <select
-            id="severity"
-            name="severity"
-            value={formData.severity}
-            onChange={handleChange}
-          >
-            <option value="Critical">Critical</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Low">Low</option>
-          </select>
-        </div>
-
-        <br />
-
-        <div>
-          <label htmlFor="description">Incident Description</label>
-          <br />
-
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            placeholder="Describe what happened in production"
-            rows={5}
-            cols={60}
-            required
-          />
-        </div>
-
-        <br />
-
-        <div>
-          <label htmlFor="impact">Business Impact</label>
-          <br />
-
-          <textarea
-            id="impact"
-            name="impact"
-            value={formData.impact}
-            onChange={handleChange}
-            placeholder="Describe customer, financial or operational impact"
-            rows={4}
-            cols={60}
-            required
-          />
-        </div>
-
-        <br />
-
-        <div>
-          <label htmlFor="logs">Relevant Logs</label>
-          <br />
-
-          <textarea
-            id="logs"
-            name="logs"
-            value={formData.logs}
-            onChange={handleChange}
-            placeholder="Paste relevant application logs"
-            rows={4}
-            cols={60}
-          />
-        </div>
-
-        <br />
-
-        <button type="submit" disabled={isLoading}>
-          {isLoading ? "Analyzing..." : "Analyze Incident"}
+    <div className="app-shell">
+      <nav className="module-navigation" aria-label="Application modules">
+        <button
+          type="button"
+          className={selectedModule === "incident" ? "active" : ""}
+          aria-current={selectedModule === "incident" ? "page" : undefined}
+          onClick={() => setSelectedModule("incident")}
+        >
+          Incident Analyzer
         </button>
-      </form>
+        <button
+          type="button"
+          className={selectedModule === "brd" ? "active" : ""}
+          aria-current={selectedModule === "brd" ? "page" : undefined}
+          onClick={() => setSelectedModule("brd")}
+        >
+          BRD to Backlog
+        </button>
+      </nav>
 
-      {error && (
-        <section>
-          <h2>Error</h2>
-          <p>{error}</p>
-        </section>
+      {selectedModule === "incident" ? (
+        <IncidentAnalyzer />
+      ) : (
+        <BrdAnalyzer />
       )}
-
-      {result && (
-        <section>
-          <hr />
-
-          <h2>Requirement Analysis Result</h2>
-
-          <h3>Incident Summary</h3>
-          <p>{result.incident_summary}</p>
-
-          <h3>Confirmed Evidence</h3>
-          <ul>
-            {result.confirmed_evidence.map((evidence, index) => (
-              <li key={`${index}-${evidence}`}>{evidence}</li>
-            ))}
-          </ul>
-
-          <h3>Business Impact</h3>
-          <p>{result.business_impact}</p>
-
-          <h3>Root-Cause Hypothesis</h3>
-          <p>{result.root_cause_hypothesis}</p>
-
-          <h3>Assumptions Requiring Validation</h3>
-          {result.assumptions.length > 0 ? (
-            <ul>
-              {result.assumptions.map((assumption, index) => (
-                <li key={`${index}-${assumption}`}>{assumption}</li>
-              ))}
-            </ul>
-          ) : (
-            <p>No additional assumptions were identified.</p>
-          )}
-
-          <h3>Missing Information</h3>
-          {result.missing_information.length > 0 ? (
-            <ul>
-              {result.missing_information.map((item, index) => (
-                <li key={`${index}-${item}`}>{item}</li>
-              ))}
-            </ul>
-          ) : (
-            <p>No missing information was identified.</p>
-          )}
-
-          <h3>Functional Requirements</h3>
-          <ul>
-            {result.functional_requirements.map((requirement, index) => (
-              <li key={`${index}-${requirement}`}>{requirement}</li>
-            ))}
-          </ul>
-
-          <h3>User Story</h3>
-          <p>{result.user_story}</p>
-
-          <h3>Acceptance Criteria</h3>
-          <ul>
-            {result.acceptance_criteria.map((criterion, index) => (
-              <li key={`${index}-${criterion}`}>{criterion}</li>
-            ))}
-          </ul>
-
-          <h3>Risks</h3>
-          <ul>
-            {result.risks.map((risk, index) => (
-              <li key={`${index}-${risk}`}>{risk}</li>
-            ))}
-          </ul>
-
-          <h3>Recommended Priority</h3>
-          <p>{result.priority}</p>
-
-          <h3>Priority Justification</h3>
-          <p>{result.priority_justification}</p>
-
-          <h3>Human Validation Required</h3>
-          <ul>
-            {result.human_validation_required.map((item, index) => (
-              <li key={`${index}-${item}`}>{item}</li>
-            ))}
-          </ul>
-        </section>
-      )}
-    </main>
+    </div>
   );
 }
 

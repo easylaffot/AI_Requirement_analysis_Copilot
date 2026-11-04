@@ -3,7 +3,9 @@ import logging
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.api.brd import router as brd_router
 from app.api.incident import router as incident_router
+
 
 
 logging.basicConfig(
@@ -30,7 +32,7 @@ app.add_middleware(
 )
 
 app.include_router(incident_router)
-
+app.include_router(brd_router)
 
 @app.get("/health")
 def health_check() -> dict[str, str]:
