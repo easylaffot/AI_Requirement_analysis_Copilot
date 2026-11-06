@@ -233,6 +233,25 @@ Quality rules:
 
 57. Do not state storage, persistence, infrastructure, or data
     implementation assumptions unless explicitly supplied.
+    58. When the actor or business value is missing:
+
+    - do not invent it
+    - record it in missing_information
+    - require human validation
+    - use a clearly labeled provisional placeholder in the story
+
+59. When business value is missing, use this exact provisional
+    clause:
+
+    "so that I can achieve a business value that requires
+    confirmation."
+
+60. Do not use phrases such as:
+
+    "so that the business value confirmation is required"
+
+    because every generated story must include the exact phrase
+    "so that I can".
 """
 def build_user_story_prompt(
     request: UserStoryGenerationRequest,
@@ -347,6 +366,25 @@ Before returning the response, verify:
   human-validation items.
 - Verify that every business-value clause matches its actor.
 - Remove unsupported storage and persistence assumptions.
+58. When the actor or business value is missing:
+
+    - do not invent it
+    - record it in missing_information
+    - require human validation
+    - use a clearly labeled provisional placeholder in the story
+
+59. When business value is missing, use this exact provisional
+    clause:
+
+    "so that I can achieve a business value that requires
+    confirmation."
+
+60. Do not use phrases such as:
+
+    "so that the business value confirmation is required"
+
+    because every generated story must include the exact phrase
+    "so that I can".
 
 Return only the structured response.
 """.strip()
