@@ -207,10 +207,31 @@ Quality rules:
     - use a confirmed policy-owning actor such as the bank only
       when that actor is supported by the business context.
 
-52. Every business-value clause must describe value from the
+52. Never generate a separate customer story whose goal is to
+    prevent, enforce, restrict, authorize, secure, or comply with a
+    restriction or policy. A customer must not be made responsible
+    for enforcing the system's access-control behavior.
+
+53. Attach actor-access restrictions as Negative or Business Rule
+    acceptance criteria to the relevant user story. If a separate
+    policy story is genuinely required, use only a policy-owning
+    actor explicitly supported by the requirement or business
+    context.
+
+54. Every story, including any policy story, must use the exact
+    phrases "As a/an", "I want to", and "so that I can".
+
+55. When an actor, business value, validation rule, required field,
+    workflow step, or outcome is explicitly unknown or cannot be
+    grounded in the supplied information, include it in
+    missing_information. It may also appear in ambiguities and
+    human_validation_required, but those sections do not replace
+    reporting it as missing information.
+
+56. Every business-value clause must describe value from the
     selected actor's perspective.
 
-53. Do not state storage, persistence, infrastructure, or data
+57. Do not state storage, persistence, infrastructure, or data
     implementation assumptions unless explicitly supplied.
 """
 def build_user_story_prompt(
@@ -313,6 +334,17 @@ Before returning the response, verify:
 - Verify that each actor owns or benefits from the stated goal.
 - Verify that customers are not assigned responsibility for
   enforcing system or business restrictions.
+- Never create a separate customer story to prevent, enforce,
+  restrict, authorize, secure, or comply with a restriction. Attach
+  access restrictions as Negative or Business Rule criteria to the
+  relevant story; use a separate policy story only for an explicitly
+  supplied policy-owning actor.
+- Every story, including a policy story, must contain "As a/an",
+  "I want to", and "so that I can".
+- Report explicitly unknown or ungrounded actors, business value,
+  validation rules, fields, workflow, and outcomes in
+  missing_information, even when also reported as ambiguities or
+  human-validation items.
 - Verify that every business-value clause matches its actor.
 - Remove unsupported storage and persistence assumptions.
 

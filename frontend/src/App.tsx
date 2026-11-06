@@ -4,10 +4,11 @@ import BrdAnalyzer from "./pages/BrdAnalyzer";
 import IncidentAnalyzer from "./pages/IncidentAnalyzer";
 import UserStoryGenerator from "./pages/UserStoryGenerator";
 import AcceptanceCriteriaGenerator from "./pages/AcceptanceCriteriaGenerator";
+import NfrRecommender from "./pages/NfrRecommender";
 
 function App() {
   const [selectedModule, setSelectedModule] = useState<
-    "incident" | "brd" | "user-story" | "acceptance-criteria"
+    "incident" | "brd" | "user-story" | "acceptance-criteria" | "nfr"
   >("incident");
 
   return (
@@ -51,6 +52,14 @@ function App() {
         >
           Acceptance Criteria
         </button>
+        <button
+          type="button"
+          className={selectedModule === "nfr" ? "active" : ""}
+          aria-current={selectedModule === "nfr" ? "page" : undefined}
+          onClick={() => setSelectedModule("nfr")}
+        >
+          NFR Recommender
+        </button>
       </nav>
 
       {selectedModule === "incident" && <IncidentAnalyzer />}
@@ -59,6 +68,7 @@ function App() {
       {selectedModule === "acceptance-criteria" && (
         <AcceptanceCriteriaGenerator />
       )}
+      {selectedModule === "nfr" && <NfrRecommender />}
     </div>
   );
 }

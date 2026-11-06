@@ -438,6 +438,142 @@ li {
   margin: 0;
 }
 
+.nfr-form {
+  display: grid;
+  gap: 18px;
+}
+
+.nfr-category-list,
+.nfr-recommendations {
+  display: grid;
+  gap: 16px;
+}
+
+.nfr-category-assessment,
+.nfr-recommendation-card {
+  padding: 18px;
+  border: 1px solid #dbe3ee;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.nfr-category-assessment {
+  border-left: 4px solid #7c3aed;
+}
+
+.nfr-recommendation-card {
+  border-left: 5px solid #0891b2;
+}
+
+.nfr-card-heading,
+.nfr-category-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.nfr-card-heading h3,
+.nfr-category-heading h3 {
+  margin: 0 0 12px;
+}
+
+.nfr-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.nfr-category-badge,
+.nfr-status,
+.nfr-relevance {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.nfr-category-badge {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.nfr-status-ready,
+.nfr-relevance-yes {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.nfr-status-needs-target {
+  background: #ffedd5;
+  color: #9a3412;
+}
+
+.nfr-status-needs-clarification,
+.nfr-relevance-no {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+.nfr-detail-grid,
+.nfr-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px 18px;
+  margin: 18px 0;
+}
+
+.nfr-detail-grid h4 {
+  margin: 0 0 8px;
+}
+
+.nfr-facts {
+  margin-bottom: 18px;
+}
+
+.nfr-facts dt {
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.nfr-facts dd {
+  margin: 2px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.nfr-recommendation-card .review-needed,
+.nfr-recommendation-card .review-pass {
+  padding: 12px 14px;
+  border-radius: 6px;
+}
+
+.nfr-recommendation-card .review-needed {
+  background: #fff7ed;
+}
+
+.nfr-recommendation-card .review-pass {
+  background: #f0fdf4;
+}
+
+.nfr-recommendation-card .review-needed p,
+.nfr-recommendation-card .review-pass p {
+  margin: 4px 0 0;
+}
+
+@media (max-width: 640px) {
+  .nfr-card-heading,
+  .nfr-category-heading {
+    flex-direction: column;
+  }
+
+  .nfr-badges {
+    justify-content: flex-start;
+  }
+}
+
 .invest-status {
   width: fit-content;
   padding: 2px 8px;

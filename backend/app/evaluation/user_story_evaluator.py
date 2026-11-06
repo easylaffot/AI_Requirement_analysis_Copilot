@@ -186,28 +186,75 @@ def _goal_has_multiple_independent_actions(goal: str) -> bool:
     return len(matches) > 1
 
 
-def _is_clear_external_dependency(dependency: str) -> bool:
+def _is_clear_external_dependency(
+    dependency: str,
+    supplied_context: str,
+) -> bool:
     text = dependency.strip().lower()
     if len(text.split()) < 3:
         return False
-    return any(
-        marker in text
-        for marker in (
-            "external",
-            "existing",
-            "business condition",
-            "must be",
-            "requires",
-            "provided",
-            "once ",
-            "after ",
-            "when ",
-            "before ",
-            "subject to",
-            "is available",
-            " exists",
-        )
+    condition_markers = (
+        "external",
+        "existing",
+        "business condition",
+        "must be",
+        "must exist",
+        "must already exist",
+        "must be available",
+        "requires",
+        "provided",
+        "once ",
+        "after ",
+        "when ",
+        "before ",
+        "subject to",
+        "is available",
+        "are available",
+        "available data",
+        "existing records",
+        "existing payees",
+        " exists",
     )
+    if not any(marker in text for marker in condition_markers):
+        return False
+
+    ignored_terms = {
+        "after",
+        "already",
+        "available",
+        "before",
+        "business",
+        "condition",
+        "data",
+        "exist",
+        "exists",
+        "external",
+        "existing",
+        "for",
+        "in",
+        "is",
+        "must",
+        "of",
+        "provided",
+        "requires",
+        "subject",
+        "system",
+        "the",
+        "to",
+        "when",
+        "with",
+    }
+
+    def meaningful_terms(value: str) -> set[str]:
+        terms = set(re.findall(r"[a-z0-9]+", value))
+        normalized = {
+            term[:-1] if len(term) > 4 and term.endswith("s") else term
+            for term in terms
+        }
+        return normalized - ignored_terms
+
+    supplied_terms = meaningful_terms(supplied_context.lower())
+    return bool(meaningful_terms(text) & supplied_terms)
 
 
 def _matches_missing_topic(
@@ -621,7 +668,10 @@ def evaluate_user_story_generation(
         for story in stories
         for dependency in story.dependencies
         if dependency not in valid_story_ids
-        and not _is_clear_external_dependency(dependency)
+        and not _is_clear_external_dependency(
+            dependency,
+            _request_text(request),
+        )
     ]
     _record_check(
         checks,
