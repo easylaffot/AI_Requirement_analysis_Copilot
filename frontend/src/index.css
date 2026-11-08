@@ -563,6 +563,226 @@ li {
   margin: 4px 0 0;
 }
 
+.ambiguity-form {
+  display: grid;
+  gap: 18px;
+}
+
+.ambiguity-result > .result-section {
+  margin-bottom: 20px;
+}
+
+.ambiguity-quality {
+  border-left: 5px solid #4338ca;
+}
+
+.quality-heading,
+.ambiguity-card-heading,
+.rewrite-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.quality-heading h2 {
+  margin-bottom: 0;
+}
+
+.quality-score {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  margin: 18px 0 10px;
+  color: #172554;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.quality-score small {
+  color: #64748b;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.overall-status,
+.severity-badge,
+.rewrite-status,
+.placeholder-badge {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.status-clear,
+.severity-low,
+.rewrite-status-ready {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-needs-clarification,
+.severity-medium,
+.rewrite-status-conditional {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+.status-not-ready,
+.severity-high,
+.rewrite-status-cannot-rewrite-safely {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.ambiguity-findings,
+.suggested-rewrites,
+.interpretation-list {
+  display: grid;
+  gap: 16px;
+}
+
+.ambiguity-card,
+.rewrite-card {
+  padding: 18px;
+  border: 1px solid #dbe3ee;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.ambiguity-card {
+  border-left: 5px solid #7c3aed;
+}
+
+.ambiguity-card-heading h3,
+.rewrite-heading h3 {
+  margin: 0 0 12px;
+}
+
+.ambiguity-id {
+  margin: 0 0 4px;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.ambiguous-text {
+  margin: 16px 0;
+  padding: 12px 14px;
+  border-left: 3px solid #a78bfa;
+  background: #f5f3ff;
+}
+
+.ambiguous-text p {
+  margin: 6px 0 0;
+  white-space: pre-wrap;
+}
+
+.ambiguity-subsection,
+.clarification-questions,
+.rewrite-detail {
+  margin-top: 18px;
+}
+
+.ambiguity-subsection h4,
+.clarification-questions h4,
+.rewrite-detail h4 {
+  margin: 0 0 8px;
+}
+
+.interpretation-card {
+  padding: 12px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: #f8fafc;
+}
+
+.interpretation-card h5 {
+  margin: 0 0 8px;
+}
+
+.interpretation-card p {
+  margin: 6px 0;
+}
+
+.clarification-questions {
+  padding: 12px 14px;
+  border-radius: 6px;
+  background: #eff6ff;
+}
+
+.clarification-questions ol {
+  margin: 0;
+  padding-left: 22px;
+}
+
+.ambiguity-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px 18px;
+  margin: 18px 0 0;
+}
+
+.ambiguity-facts dt {
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.ambiguity-facts dd {
+  margin: 2px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.rewrite-card {
+  border-left: 5px solid #16a34a;
+}
+
+.rewrite-conditional {
+  border-left-color: #d97706;
+  background: #fffbeb;
+}
+
+.rewrite-cannot-rewrite-safely {
+  border-left-color: #dc2626;
+}
+
+.rewrite-heading {
+  align-items: center;
+}
+
+.rewrite-heading h3 {
+  overflow-wrap: anywhere;
+}
+
+.placeholder-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.placeholder-badge {
+  border-radius: 6px;
+  background: #ffedd5;
+  color: #9a3412;
+  overflow-wrap: anywhere;
+}
+
+.rewrite-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px 18px;
+}
+
+.compact-list {
+  margin-top: 8px;
+}
+
 @media (max-width: 640px) {
   .nfr-card-heading,
   .nfr-category-heading {
@@ -571,6 +791,12 @@ li {
 
   .nfr-badges {
     justify-content: flex-start;
+  }
+
+  .quality-heading,
+  .ambiguity-card-heading,
+  .rewrite-heading {
+    flex-direction: column;
   }
 }
 
