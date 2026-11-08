@@ -6,6 +6,7 @@ import UserStoryGenerator from "./pages/UserStoryGenerator";
 import AcceptanceCriteriaGenerator from "./pages/AcceptanceCriteriaGenerator";
 import NfrRecommender from "./pages/NfrRecommender";
 import AmbiguityDetector from "./pages/AmbiguityDetector";
+import GapAnalyzer from "./pages/GapAnalyzer";
 
 function App() {
   const [selectedModule, setSelectedModule] = useState<
@@ -15,6 +16,7 @@ function App() {
     | "acceptance-criteria"
     | "nfr"
     | "ambiguity"
+    | "gap-analysis"
   >("incident");
 
   return (
@@ -74,6 +76,16 @@ function App() {
         >
           Ambiguity Detector
         </button>
+        <button
+          type="button"
+          className={selectedModule === "gap-analysis" ? "active" : ""}
+          aria-current={
+            selectedModule === "gap-analysis" ? "page" : undefined
+          }
+          onClick={() => setSelectedModule("gap-analysis")}
+        >
+          Gap Analyzer
+        </button>
       </nav>
 
       {selectedModule === "incident" && <IncidentAnalyzer />}
@@ -84,6 +96,7 @@ function App() {
       )}
       {selectedModule === "nfr" && <NfrRecommender />}
       {selectedModule === "ambiguity" && <AmbiguityDetector />}
+      {selectedModule === "gap-analysis" && <GapAnalyzer />}
     </div>
   );
 }

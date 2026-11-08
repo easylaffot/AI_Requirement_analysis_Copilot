@@ -7,6 +7,7 @@ from app.api.brd import router as brd_router
 from app.api.incident import router as incident_router
 from app.api.user_story import router as user_story_router
 from app.api.ambiguity import router as ambiguity_router
+from app.api.gap_analysis import router as gap_analysis_router
 
 from app.api.acceptance_criteria import (
     router as acceptance_criteria_router,
@@ -43,6 +44,7 @@ app.include_router(user_story_router)
 app.include_router(acceptance_criteria_router)
 app.include_router(nfr_router)
 app.include_router(ambiguity_router)
+app.include_router(gap_analysis_router)
 
 @app.get("/health")
 def health_check() -> dict[str, str]:
