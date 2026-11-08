@@ -1800,3 +1800,292 @@ li {
     flex-direction: column;
   }
 }
+
+.risk-analysis-form,
+.risk-requirement-list,
+.risk-summary-list,
+.risk-finding-list,
+.risk-relationship-list,
+.risk-evidence-list,
+.risk-mitigation-list {
+  display: grid;
+  gap: 16px;
+}
+
+.risk-requirement-card {
+  display: grid;
+  gap: 16px;
+  border-left: 5px solid #0891b2;
+}
+
+.risk-overview {
+  border-left: 5px solid #4338ca;
+}
+
+.risk-overview-heading,
+.risk-finding-heading,
+.risk-mitigation-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.risk-score {
+  margin: 0;
+  color: #172554;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.risk-score-label {
+  margin: 0;
+  color: #64748b;
+}
+
+.risk-readiness,
+.risk-category-badge,
+.risk-status-badge,
+.risk-likelihood-badge,
+.risk-impact-badge,
+.risk-mitigation-status {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.readiness-ready,
+.risk-severity-low,
+.likelihood-low,
+.impact-low,
+.status-ready {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.readiness-proceed-with-caution,
+.risk-severity-medium,
+.likelihood-medium,
+.impact-medium,
+.status-needs-decision {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+.readiness-not-ready,
+.risk-severity-critical,
+.risk-severity-high,
+.likelihood-high,
+.impact-critical,
+.impact-high {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.likelihood-unknown {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.status-needs-specialist-review {
+  background: #ffedd5;
+  color: #9a3412;
+}
+
+.risk-category-badge {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.risk-summary-list {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.risk-summary-card,
+.risk-finding-card,
+.risk-relationship-card {
+  padding: 18px;
+  border: 1px solid #dbe3ee;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.risk-summary-card {
+  border-left: 5px solid #64748b;
+}
+
+.risk-summary-card.risk-severity-critical,
+.risk-summary-card.risk-severity-high {
+  border-left-color: #dc2626;
+}
+
+.risk-summary-card.risk-severity-medium {
+  border-left-color: #d97706;
+}
+
+.risk-summary-card.risk-severity-low {
+  border-left-color: #16a34a;
+}
+
+.risk-summary-card > p {
+  margin: 6px 0;
+}
+
+.risk-summary-count {
+  color: #172554;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.risk-summary-ids,
+.risk-finding-id {
+  color: #64748b;
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.risk-finding-card {
+  border-left: 5px solid #7c3aed;
+}
+
+.risk-finding-card.risk-severity-critical,
+.risk-finding-card.risk-severity-high {
+  border-left-color: #dc2626;
+}
+
+.risk-finding-card.risk-severity-medium {
+  border-left-color: #d97706;
+}
+
+.risk-finding-card.risk-severity-low {
+  border-left-color: #16a34a;
+}
+
+.risk-finding-heading h3 {
+  margin: 0 0 12px;
+}
+
+.risk-finding-id {
+  margin: 0 0 4px;
+  font-weight: 600;
+}
+
+.risk-finding-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.risk-facts,
+.risk-detail-grid,
+.risk-evidence-panel dl,
+.risk-mitigation-panel dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px 18px;
+  margin: 16px 0 0;
+}
+
+.risk-facts dt,
+.risk-detail-grid dt,
+.risk-evidence-panel dt,
+.risk-mitigation-panel dt {
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.risk-facts dd,
+.risk-detail-grid dd,
+.risk-evidence-panel dd,
+.risk-mitigation-panel dd {
+  margin: 2px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.risk-statement,
+.risk-subsection {
+  margin-top: 18px;
+}
+
+.risk-statement {
+  padding: 12px 14px;
+  border-left: 4px solid #7c3aed;
+  background: #f5f3ff;
+}
+
+.risk-statement h4,
+.risk-subsection h4 {
+  margin: 0 0 8px;
+}
+
+.risk-statement p {
+  margin: 0;
+}
+
+.risk-evidence-panel,
+.risk-mitigation-panel {
+  padding: 12px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: #f8fafc;
+}
+
+.risk-evidence-panel {
+  border-left: 4px solid #0891b2;
+}
+
+.risk-mitigation-panel {
+  border-left: 4px solid #16a34a;
+}
+
+.risk-mitigation-panel .risk-mitigation-heading h5 {
+  margin: 0;
+}
+
+.risk-mitigation-panel dl {
+  margin-top: 12px;
+}
+
+.risk-blocker-indicators {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.risk-blocker-indicators span {
+  padding: 5px 9px;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #475569;
+  font-weight: 600;
+}
+
+.risk-blocker-indicators .is-blocker {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.risk-relationship-card h3 {
+  margin: 0;
+}
+
+.risk-relationship-card > p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+  .risk-overview-heading,
+  .risk-finding-heading,
+  .risk-mitigation-heading {
+    flex-direction: column;
+  }
+
+  .risk-finding-badges {
+    justify-content: flex-start;
+  }
+}

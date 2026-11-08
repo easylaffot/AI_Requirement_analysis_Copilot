@@ -10,6 +10,7 @@ import GapAnalyzer from "./pages/GapAnalyzer";
 import DuplicateRequirementDetector from "./pages/DuplicateRequirementDetector";
 import RequirementConflictDetector from "./pages/RequirementConflictDetector";
 import RequirementClassifier from "./pages/RequirementClassifier";
+import RequirementRiskAnalyzer from "./pages/RequirementRiskAnalyzer";
 
 function App() {
   const [selectedModule, setSelectedModule] = useState<
@@ -23,6 +24,7 @@ function App() {
     | "duplicate-requirements"
     | "requirement-conflicts"
     | "requirement-classifier"
+    | "requirement-risk-analyzer"
   >("incident");
 
   return (
@@ -126,6 +128,18 @@ function App() {
         >
           Requirement Classifier
         </button>
+        <button
+          type="button"
+          className={
+            selectedModule === "requirement-risk-analyzer" ? "active" : ""
+          }
+          aria-current={
+            selectedModule === "requirement-risk-analyzer" ? "page" : undefined
+          }
+          onClick={() => setSelectedModule("requirement-risk-analyzer")}
+        >
+          Risk Analyzer
+        </button>
       </nav>
 
       {selectedModule === "incident" && <IncidentAnalyzer />}
@@ -144,6 +158,9 @@ function App() {
         <RequirementConflictDetector />
       )}
       {selectedModule === "requirement-classifier" && <RequirementClassifier />}
+      {selectedModule === "requirement-risk-analyzer" && (
+        <RequirementRiskAnalyzer />
+      )}
     </div>
   );
 }
