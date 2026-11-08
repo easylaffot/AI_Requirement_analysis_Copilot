@@ -9,6 +9,7 @@ import AmbiguityDetector from "./pages/AmbiguityDetector";
 import GapAnalyzer from "./pages/GapAnalyzer";
 import DuplicateRequirementDetector from "./pages/DuplicateRequirementDetector";
 import RequirementConflictDetector from "./pages/RequirementConflictDetector";
+import RequirementClassifier from "./pages/RequirementClassifier";
 
 function App() {
   const [selectedModule, setSelectedModule] = useState<
@@ -21,6 +22,7 @@ function App() {
     | "gap-analysis"
     | "duplicate-requirements"
     | "requirement-conflicts"
+    | "requirement-classifier"
   >("incident");
 
   return (
@@ -112,6 +114,18 @@ function App() {
         >
           Conflict Detector
         </button>
+        <button
+          type="button"
+          className={
+            selectedModule === "requirement-classifier" ? "active" : ""
+          }
+          aria-current={
+            selectedModule === "requirement-classifier" ? "page" : undefined
+          }
+          onClick={() => setSelectedModule("requirement-classifier")}
+        >
+          Requirement Classifier
+        </button>
       </nav>
 
       {selectedModule === "incident" && <IncidentAnalyzer />}
@@ -129,6 +143,7 @@ function App() {
       {selectedModule === "requirement-conflicts" && (
         <RequirementConflictDetector />
       )}
+      {selectedModule === "requirement-classifier" && <RequirementClassifier />}
     </div>
   );
 }
