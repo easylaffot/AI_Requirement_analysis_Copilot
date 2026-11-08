@@ -783,6 +783,220 @@ li {
   margin-top: 8px;
 }
 
+.duplicate-analysis-form {
+  display: grid;
+  gap: 18px;
+}
+
+.requirement-cards-section {
+  display: grid;
+  gap: 14px;
+}
+
+.requirement-cards-heading,
+.requirement-card-heading,
+.duplicate-finding-heading,
+.relationship-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.requirement-cards-heading h2 {
+  margin: 0;
+  color: #172554;
+}
+
+.duplicate-requirement-list,
+.duplicate-findings,
+.requirement-relationships {
+  display: grid;
+  gap: 16px;
+}
+
+.duplicate-requirement-card,
+.duplicate-finding-card,
+.requirement-relationship {
+  padding: 18px;
+  border: 1px solid #dbe3ee;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.duplicate-requirement-card {
+  display: grid;
+  gap: 16px;
+  border-left: 5px solid #0891b2;
+}
+
+.requirement-card-heading h3,
+.relationship-heading h3 {
+  margin: 0;
+}
+
+.duplicate-finding-card {
+  border-left: 5px solid #7c3aed;
+}
+
+.duplicate-finding-heading h3 {
+  margin: 0 0 12px;
+}
+
+.duplicate-finding-id {
+  margin: 0 0 4px;
+  color: #64748b;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.duplicate-finding-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.duplicate-classification,
+.duplicate-confidence,
+.standalone-status {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.classification-exact-duplicate,
+.confidence-high {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.classification-semantic-duplicate,
+.classification-near-duplicate {
+  background: #ffedd5;
+  color: #9a3412;
+}
+
+.classification-partial-overlap,
+.confidence-medium {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+.classification-related-but-distinct,
+.classification-not-duplicate,
+.confidence-low,
+.standalone-status.related {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.duplicate-finding-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.duplicate-finding-details h4,
+.consolidated-draft h4 {
+  margin: 0 0 8px;
+}
+
+.requirement-differences {
+  display: grid;
+  gap: 10px;
+}
+
+.requirement-difference {
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: #f8fafc;
+}
+
+.requirement-difference h5 {
+  margin: 0 0 8px;
+}
+
+.duplicate-conflict {
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-radius: 6px;
+}
+
+.duplicate-conflict p {
+  margin: 4px 0 0;
+}
+
+.conflict-detected {
+  background: #fef2f2;
+  color: #991b1b;
+}
+
+.no-conflict {
+  background: #f0fdf4;
+  color: #166534;
+}
+
+.duplicate-action {
+  margin-top: 16px;
+}
+
+.duplicate-action p {
+  margin: 8px 0;
+}
+
+.consolidated-draft {
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-left: 4px solid #0891b2;
+  background: #ecfeff;
+}
+
+.consolidated-draft p {
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+.duplicate-counts,
+.relationship-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px 18px;
+  margin: 0;
+}
+
+.duplicate-counts dt,
+.relationship-facts dt {
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.duplicate-counts dd {
+  margin: 4px 0 0;
+  color: #172554;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.relationship-facts dd {
+  margin: 2px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.standalone-status.standalone {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.requirement-relationship > p {
+  margin-bottom: 0;
+}
+
 .gap-analysis-form {
   display: grid;
   gap: 18px;
@@ -978,6 +1192,17 @@ li {
   }
 
   .gap-badges {
+    justify-content: flex-start;
+  }
+
+  .requirement-cards-heading,
+  .requirement-card-heading,
+  .duplicate-finding-heading,
+  .relationship-heading {
+    flex-direction: column;
+  }
+
+  .duplicate-finding-badges {
     justify-content: flex-start;
   }
 }

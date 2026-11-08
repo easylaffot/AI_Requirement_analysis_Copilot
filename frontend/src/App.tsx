@@ -7,6 +7,7 @@ import AcceptanceCriteriaGenerator from "./pages/AcceptanceCriteriaGenerator";
 import NfrRecommender from "./pages/NfrRecommender";
 import AmbiguityDetector from "./pages/AmbiguityDetector";
 import GapAnalyzer from "./pages/GapAnalyzer";
+import DuplicateRequirementDetector from "./pages/DuplicateRequirementDetector";
 
 function App() {
   const [selectedModule, setSelectedModule] = useState<
@@ -17,6 +18,7 @@ function App() {
     | "nfr"
     | "ambiguity"
     | "gap-analysis"
+    | "duplicate-requirements"
   >("incident");
 
   return (
@@ -86,6 +88,18 @@ function App() {
         >
           Gap Analyzer
         </button>
+        <button
+          type="button"
+          className={
+            selectedModule === "duplicate-requirements" ? "active" : ""
+          }
+          aria-current={
+            selectedModule === "duplicate-requirements" ? "page" : undefined
+          }
+          onClick={() => setSelectedModule("duplicate-requirements")}
+        >
+          Duplicate Detector
+        </button>
       </nav>
 
       {selectedModule === "incident" && <IncidentAnalyzer />}
@@ -97,6 +111,9 @@ function App() {
       {selectedModule === "nfr" && <NfrRecommender />}
       {selectedModule === "ambiguity" && <AmbiguityDetector />}
       {selectedModule === "gap-analysis" && <GapAnalyzer />}
+      {selectedModule === "duplicate-requirements" && (
+        <DuplicateRequirementDetector />
+      )}
     </div>
   );
 }
