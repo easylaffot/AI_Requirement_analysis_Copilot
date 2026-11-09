@@ -147,8 +147,7 @@ class AmbiguityAnalysisResponse(BaseModel):
 
     missing_information: list[str]
 
-    risks: list[str]
-
+    risks: list[str]    
     human_validation_required: list[str] = Field(
-        min_length=1,
-    )
+    default_factory=list,
+)

@@ -288,7 +288,25 @@ Before returning, verify:
 - Check whether notification channels are defined.
 - Verify that the summary does not strengthen or reinterpret the
   source wording.
+For a clear and measurable requirement:
 
+- Do not invent actors, users, operators, administrators, reviewers,
+  teams, or stakeholders that are absent from the input.
+
+- Do not create speculative risks merely to populate the risks list.
+
+- Do not require human validation for a confirmed value or boundary
+  unless the input explicitly indicates that confirmation is pending.
+
+- When no grounded assumptions, missing information, risks, or human
+  decisions exist, return empty arrays for those fields.
+
+- A clear requirement may return:
+  ambiguity_findings=[]
+  assumptions=[]
+  missing_information=[]
+  risks=[]
+  human_validation_required=[]
 
 Return only the structured response.
 """.strip()
