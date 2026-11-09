@@ -11,6 +11,8 @@ import DuplicateRequirementDetector from "./pages/DuplicateRequirementDetector";
 import RequirementConflictDetector from "./pages/RequirementConflictDetector";
 import RequirementClassifier from "./pages/RequirementClassifier";
 import RequirementRiskAnalyzer from "./pages/RequirementRiskAnalyzer";
+import RequirementPrioritizationAssistant from "./pages/RequirementPrioritizationAssistant";
+import RequirementDependencyMapper from "./pages/RequirementDependencyMapper";
 
 function App() {
   const [selectedModule, setSelectedModule] = useState<
@@ -25,6 +27,8 @@ function App() {
     | "requirement-conflicts"
     | "requirement-classifier"
     | "requirement-risk-analyzer"
+    | "requirement-prioritization-assistant"
+    | "requirement-dependency-mapper"
   >("incident");
 
   return (
@@ -140,6 +144,36 @@ function App() {
         >
           Risk Analyzer
         </button>
+        <button
+          type="button"
+          className={
+            selectedModule === "requirement-prioritization-assistant"
+              ? "active"
+              : ""
+          }
+          aria-current={
+            selectedModule === "requirement-prioritization-assistant"
+              ? "page"
+              : undefined
+          }
+          onClick={() =>
+            setSelectedModule("requirement-prioritization-assistant")
+          }
+        >
+          Prioritization Assistant
+        </button>
+        <button
+          type="button"
+          className={
+            selectedModule === "requirement-dependency-mapper" ? "active" : ""
+          }
+          aria-current={
+            selectedModule === "requirement-dependency-mapper" ? "page" : undefined
+          }
+          onClick={() => setSelectedModule("requirement-dependency-mapper")}
+        >
+          Dependency Mapper
+        </button>
       </nav>
 
       {selectedModule === "incident" && <IncidentAnalyzer />}
@@ -160,6 +194,12 @@ function App() {
       {selectedModule === "requirement-classifier" && <RequirementClassifier />}
       {selectedModule === "requirement-risk-analyzer" && (
         <RequirementRiskAnalyzer />
+      )}
+      {selectedModule === "requirement-prioritization-assistant" && (
+        <RequirementPrioritizationAssistant />
+      )}
+      {selectedModule === "requirement-dependency-mapper" && (
+        <RequirementDependencyMapper />
       )}
     </div>
   );
