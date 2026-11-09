@@ -14,6 +14,7 @@ import RequirementRiskAnalyzer from "./pages/RequirementRiskAnalyzer";
 import RequirementPrioritizationAssistant from "./pages/RequirementPrioritizationAssistant";
 import RequirementDependencyMapper from "./pages/RequirementDependencyMapper";
 import RequirementTraceabilityAnalyzer from "./pages/RequirementTraceabilityAnalyzer";
+import RegulatoryImpactAnalyzer from "./pages/RegulatoryImpactAnalyzer";
 
 function App() {
   const [selectedModule, setSelectedModule] = useState<
@@ -31,6 +32,7 @@ function App() {
     | "requirement-prioritization-assistant"
     | "requirement-dependency-mapper"
     | "requirement-traceability-analyzer"
+    | "regulatory-impact-analyzer"
   >("incident");
 
   return (
@@ -188,6 +190,16 @@ function App() {
         >
           Traceability Analyzer
         </button>
+        <button
+          type="button"
+          className={selectedModule === "regulatory-impact-analyzer" ? "active" : ""}
+          aria-current={
+            selectedModule === "regulatory-impact-analyzer" ? "page" : undefined
+          }
+          onClick={() => setSelectedModule("regulatory-impact-analyzer")}
+        >
+          Regulatory Impact
+        </button>
       </nav>
 
       {selectedModule === "incident" && <IncidentAnalyzer />}
@@ -217,6 +229,9 @@ function App() {
       )}
       {selectedModule === "requirement-traceability-analyzer" && (
         <RequirementTraceabilityAnalyzer />
+      )}
+      {selectedModule === "regulatory-impact-analyzer" && (
+        <RegulatoryImpactAnalyzer />
       )}
     </div>
   );
