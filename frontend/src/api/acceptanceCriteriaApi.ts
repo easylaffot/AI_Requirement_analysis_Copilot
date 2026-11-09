@@ -1,4 +1,4 @@
-import axios from "axios";
+import { apiClient } from "./apiClient";
 
 import type {
   AcceptanceCriteriaRequest,
@@ -8,7 +8,7 @@ import type {
 export async function generateAcceptanceCriteria(
   request: AcceptanceCriteriaRequest
 ): Promise<AcceptanceCriteriaResponse> {
-  const response = await axios.post<AcceptanceCriteriaResponse>(
+  const response = await apiClient.post<AcceptanceCriteriaResponse>(
     "/api/acceptance-criteria/generate",
     request
   );

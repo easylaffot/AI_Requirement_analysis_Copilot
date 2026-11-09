@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { axios } from "../api/apiClient";
 
 import { analyzeBrd } from "../api/brdApi";
 import BrdBacklogResult from "../components/BrdBacklogResult";

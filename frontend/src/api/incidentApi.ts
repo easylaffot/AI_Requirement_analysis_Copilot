@@ -1,4 +1,4 @@
-import axios from "axios";
+import { apiClient } from "./apiClient";
 
 import type {
   IncidentAnalysis,
@@ -8,7 +8,7 @@ import type {
 export async function analyzeIncident(
   incident: IncidentFormData
 ): Promise<IncidentAnalysis> {
-  const response = await axios.post<IncidentAnalysis>(
+  const response = await apiClient.post<IncidentAnalysis>(
     "/api/incidents/analyze",
     incident
   );

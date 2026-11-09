@@ -1,4 +1,4 @@
-import axios from "axios";
+import { apiClient } from "./apiClient";
 
 import type {
   DuplicateAnalysisRequest,
@@ -8,7 +8,7 @@ import type {
 export async function analyzeDuplicateRequirements(
   request: DuplicateAnalysisRequest
 ): Promise<DuplicateAnalysisResponse> {
-  const response = await axios.post<DuplicateAnalysisResponse>(
+  const response = await apiClient.post<DuplicateAnalysisResponse>(
     "/api/duplicate-requirements/analyze",
     request
   );

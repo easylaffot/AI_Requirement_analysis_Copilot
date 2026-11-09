@@ -1,4 +1,4 @@
-import axios from "axios";
+import { apiClient } from "./apiClient";
 
 import type {
   UserStoryGenerationRequest,
@@ -8,7 +8,7 @@ import type {
 export async function generateUserStories(
   request: UserStoryGenerationRequest
 ): Promise<UserStoryGenerationResponse> {
-  const response = await axios.post<UserStoryGenerationResponse>(
+  const response = await apiClient.post<UserStoryGenerationResponse>(
     "/api/user-stories/generate",
     request
   );

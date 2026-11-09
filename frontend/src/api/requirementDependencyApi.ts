@@ -1,4 +1,4 @@
-import axios from "axios";
+import { apiClient } from "./apiClient";
 
 import type {
   RequirementDependencyRequest,
@@ -8,7 +8,7 @@ import type {
 export async function analyzeRequirementDependencies(
   request: RequirementDependencyRequest
 ): Promise<RequirementDependencyResponse> {
-  const response = await axios.post<RequirementDependencyResponse>(
+  const response = await apiClient.post<RequirementDependencyResponse>(
     "/api/requirement-dependencies/analyze",
     request
   );

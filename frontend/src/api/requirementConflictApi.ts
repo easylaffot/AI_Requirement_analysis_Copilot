@@ -1,4 +1,4 @@
-import axios from "axios";
+import { apiClient } from "./apiClient";
 
 import type {
   ConflictAnalysisRequest,
@@ -8,7 +8,7 @@ import type {
 export async function analyzeRequirementConflicts(
   request: ConflictAnalysisRequest
 ): Promise<ConflictAnalysisResponse> {
-  const response = await axios.post<ConflictAnalysisResponse>(
+  const response = await apiClient.post<ConflictAnalysisResponse>(
     "/api/requirement-conflicts/analyze",
     request
   );

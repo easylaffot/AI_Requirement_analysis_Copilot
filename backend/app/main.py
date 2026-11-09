@@ -1,4 +1,5 @@
 import logging
+import os
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -50,13 +51,23 @@ app = FastAPI(
     version="1.0.0",
 )
 
+frontend_origins = [
+    origin.strip()
+    for origin in os.getenv(
+        "FRONTEND_ORIGINS",
+        "http://localhost:5173",
+    ).split(",")
+    if origin.strip()
+]
+if not frontend_origins:
+    frontend_origins = ["http://localhost:5173"]
+if "*" in frontend_origins:
+    raise ValueError("FRONTEND_ORIGINS must not contain wildcard origins.")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-    ],
-    allow_credentials=True,
+    allow_origins=frontend_origins,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -81,7 +92,7 @@ app.include_router(regulatory_impact_router)
 def health_check() -> dict[str, str]:
     return {
         "status": "healthy",
-        "application": "Requirement Analysis Copilot",
+        "service": "requirement-analysis-copilot",
     }
 
 

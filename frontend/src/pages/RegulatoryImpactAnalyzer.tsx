@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { axios } from "../api/apiClient";
 
 import { analyzeRegulatoryImpact } from "../api/regulatoryImpactApi";
 import RegulatoryImpactResult from "../components/RegulatoryImpactResult";

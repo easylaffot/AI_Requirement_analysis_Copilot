@@ -1,4 +1,4 @@
-import axios from "axios";
+import { apiClient } from "./apiClient";
 
 import type {
   AmbiguityAnalysisRequest,
@@ -8,7 +8,7 @@ import type {
 export async function analyzeAmbiguity(
   request: AmbiguityAnalysisRequest
 ): Promise<AmbiguityAnalysisResponse> {
-  const response = await axios.post<AmbiguityAnalysisResponse>(
+  const response = await apiClient.post<AmbiguityAnalysisResponse>(
     "/api/ambiguity/analyze",
     request
   );

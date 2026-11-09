@@ -1,4 +1,4 @@
-import axios from "axios";
+import { apiClient } from "./apiClient";
 
 import type {
   GapAnalysisRequest,
@@ -8,7 +8,7 @@ import type {
 export async function analyzeRequirementGaps(
   request: GapAnalysisRequest
 ): Promise<GapAnalysisResponse> {
-  const response = await axios.post<GapAnalysisResponse>(
+  const response = await apiClient.post<GapAnalysisResponse>(
     "/api/gap-analysis/analyze",
     request
   );

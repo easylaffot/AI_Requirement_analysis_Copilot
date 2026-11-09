@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { axios } from "../api/apiClient";
 
 import { generateAcceptanceCriteria } from "../api/acceptanceCriteriaApi";
 import AcceptanceCriteriaResult from "../components/AcceptanceCriteriaResult";

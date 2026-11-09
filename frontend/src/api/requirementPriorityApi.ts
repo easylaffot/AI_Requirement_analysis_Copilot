@@ -1,4 +1,4 @@
-import axios from "axios";
+import { apiClient } from "./apiClient";
 
 import type {
   RequirementPriorityRequest,
@@ -8,7 +8,7 @@ import type {
 export async function analyzeRequirementPriorities(
   request: RequirementPriorityRequest
 ): Promise<RequirementPriorityResponse> {
-  const response = await axios.post<RequirementPriorityResponse>(
+  const response = await apiClient.post<RequirementPriorityResponse>(
     "/api/requirement-priorities/analyze",
     request
   );

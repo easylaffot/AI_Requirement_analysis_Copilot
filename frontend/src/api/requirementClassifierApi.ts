@@ -1,4 +1,4 @@
-import axios from "axios";
+import { apiClient } from "./apiClient";
 
 import type {
   RequirementClassificationRequest,
@@ -8,7 +8,7 @@ import type {
 export async function classifyRequirements(
   request: RequirementClassificationRequest
 ): Promise<RequirementClassificationResponse> {
-  const response = await axios.post<RequirementClassificationResponse>(
+  const response = await apiClient.post<RequirementClassificationResponse>(
     "/api/requirement-classifier/classify",
     request
   );

@@ -1,4 +1,4 @@
-import axios from "axios";
+import { apiClient } from "./apiClient";
 
 import type {
   RegulatoryImpactRequest,
@@ -8,7 +8,7 @@ import type {
 export async function analyzeRegulatoryImpact(
   request: RegulatoryImpactRequest
 ): Promise<RegulatoryImpactResponse> {
-  const response = await axios.post<RegulatoryImpactResponse>(
+  const response = await apiClient.post<RegulatoryImpactResponse>(
     "/api/regulatory-impact/analyze",
     request
   );

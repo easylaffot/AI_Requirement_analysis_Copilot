@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { axios } from "../api/apiClient";
 
 import { classifyRequirements } from "../api/requirementClassifierApi";
 import RequirementClassifierResult from "../components/RequirementClassifierResult";

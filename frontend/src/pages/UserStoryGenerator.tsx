@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { axios } from "../api/apiClient";
 
 import { generateUserStories } from "../api/userStoryApi";
 import UserStoryResult from "../components/UserStoryResult";

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { axios } from "../api/apiClient";
 
 import { analyzeDuplicateRequirements } from "../api/duplicateRequirementApi";
 import DuplicateRequirementResult from "../components/DuplicateRequirementResult";

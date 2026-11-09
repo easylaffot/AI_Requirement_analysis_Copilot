@@ -1,4 +1,4 @@
-import axios from "axios";
+import { apiClient } from "./apiClient";
 
 import type {
   RequirementTraceabilityRequest,
@@ -8,7 +8,7 @@ import type {
 export async function analyzeRequirementTraceability(
   request: RequirementTraceabilityRequest
 ): Promise<RequirementTraceabilityResponse> {
-  const response = await axios.post<RequirementTraceabilityResponse>(
+  const response = await apiClient.post<RequirementTraceabilityResponse>(
     "/api/requirement-traceability/analyze",
     request
   );

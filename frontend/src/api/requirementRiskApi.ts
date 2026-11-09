@@ -1,4 +1,4 @@
-import axios from "axios";
+import { apiClient } from "./apiClient";
 
 import type {
   RequirementRiskRequest,
@@ -8,7 +8,7 @@ import type {
 export async function analyzeRequirementRisks(
   request: RequirementRiskRequest
 ): Promise<RequirementRiskResponse> {
-  const response = await axios.post<RequirementRiskResponse>(
+  const response = await apiClient.post<RequirementRiskResponse>(
     "/api/requirement-risks/analyze",
     request
   );

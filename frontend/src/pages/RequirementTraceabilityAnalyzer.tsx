@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { axios } from "../api/apiClient";
 
 import { analyzeRequirementTraceability } from "../api/requirementTraceabilityApi";
 import RequirementTraceabilityResult from "../components/RequirementTraceabilityResult";

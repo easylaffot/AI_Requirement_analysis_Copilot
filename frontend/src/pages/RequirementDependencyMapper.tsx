@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { axios } from "../api/apiClient";
 
 import { analyzeRequirementDependencies } from "../api/requirementDependencyApi";
 import RequirementDependencyResult from "../components/RequirementDependencyResult";

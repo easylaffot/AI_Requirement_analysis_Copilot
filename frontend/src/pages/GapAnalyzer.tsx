@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { axios } from "../api/apiClient";
 
 import { analyzeRequirementGaps } from "../api/gapAnalysisApi";
 import GapAnalysisResult from "../components/GapAnalysisResult";

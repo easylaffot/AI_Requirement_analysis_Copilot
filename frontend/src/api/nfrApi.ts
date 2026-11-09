@@ -1,4 +1,4 @@
-import axios from "axios";
+import { apiClient } from "./apiClient";
 
 import type {
   NfrRecommendationRequest,
@@ -8,7 +8,7 @@ import type {
 export async function recommendNfrs(
   request: NfrRecommendationRequest
 ): Promise<NfrRecommendationResponse> {
-  const response = await axios.post<NfrRecommendationResponse>(
+  const response = await apiClient.post<NfrRecommendationResponse>(
     "/api/nfr/recommend",
     request
   );

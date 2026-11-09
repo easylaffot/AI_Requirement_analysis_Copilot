@@ -1,4 +1,4 @@
-import axios from "axios";
+import { apiClient } from "./apiClient";
 
 import type {
   BrdAnalysisRequest,
@@ -8,7 +8,7 @@ import type {
 export async function analyzeBrd(
   request: BrdAnalysisRequest
 ): Promise<BrdAnalysisResponse> {
-  const response = await axios.post<BrdAnalysisResponse>(
+  const response = await apiClient.post<BrdAnalysisResponse>(
     "/api/brd/analyze",
     request
   );

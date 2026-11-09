@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import { axios } from "../api/apiClient";
 
 import { analyzeAmbiguity } from "../api/ambiguityApi";
 import AmbiguityResult from "../components/AmbiguityResult";
