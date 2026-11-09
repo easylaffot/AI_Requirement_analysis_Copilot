@@ -13,6 +13,7 @@ import RequirementClassifier from "./pages/RequirementClassifier";
 import RequirementRiskAnalyzer from "./pages/RequirementRiskAnalyzer";
 import RequirementPrioritizationAssistant from "./pages/RequirementPrioritizationAssistant";
 import RequirementDependencyMapper from "./pages/RequirementDependencyMapper";
+import RequirementTraceabilityAnalyzer from "./pages/RequirementTraceabilityAnalyzer";
 
 function App() {
   const [selectedModule, setSelectedModule] = useState<
@@ -29,6 +30,7 @@ function App() {
     | "requirement-risk-analyzer"
     | "requirement-prioritization-assistant"
     | "requirement-dependency-mapper"
+    | "requirement-traceability-analyzer"
   >("incident");
 
   return (
@@ -174,6 +176,18 @@ function App() {
         >
           Dependency Mapper
         </button>
+        <button
+          type="button"
+          className={
+            selectedModule === "requirement-traceability-analyzer" ? "active" : ""
+          }
+          aria-current={
+            selectedModule === "requirement-traceability-analyzer" ? "page" : undefined
+          }
+          onClick={() => setSelectedModule("requirement-traceability-analyzer")}
+        >
+          Traceability Analyzer
+        </button>
       </nav>
 
       {selectedModule === "incident" && <IncidentAnalyzer />}
@@ -200,6 +214,9 @@ function App() {
       )}
       {selectedModule === "requirement-dependency-mapper" && (
         <RequirementDependencyMapper />
+      )}
+      {selectedModule === "requirement-traceability-analyzer" && (
+        <RequirementTraceabilityAnalyzer />
       )}
     </div>
   );

@@ -8,6 +8,9 @@ from app.api.incident import router as incident_router
 from app.api.user_story import router as user_story_router
 from app.api.ambiguity import router as ambiguity_router
 from app.api.gap_analysis import router as gap_analysis_router
+from app.api.requirement_traceability import (
+    router as requirement_traceability_router,
+)
 from app.api.requirement_dependency import (
     router as requirement_dependency_router,
 )
@@ -68,6 +71,7 @@ app.include_router(requirement_classifier_router)
 app.include_router(requirement_risk_router)
 app.include_router(requirement_priority_router)
 app.include_router(requirement_dependency_router)
+app.include_router(requirement_traceability_router)
 
 @app.get("/health")
 def health_check() -> dict[str, str]:
